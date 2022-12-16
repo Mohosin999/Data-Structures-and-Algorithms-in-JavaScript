@@ -38,16 +38,34 @@ if (reverseWord === word) {
  * Creates a Stack
  * **************************
  */
+const MAX_SIZE = 30;
+
 class Stack {
   // const Stack = function () {
   //   this.count = 0;
   //   this.storage = {};
-  //   // Adds a value at the end of the stack
+  constructor() {
+    this.list = new Array(MAX_SIZE);
+    this.top = -1;
+  }
+
+  // Adds a value at the end of the stack
   //   this.push = function (value) {
   //     this.storage[this.count] = value;
   //     this.count++;
   //   };
-  //   // Removes and returns the value at the end of the stack
+  push(value) {
+    if (this.top >= MAX_SIZE) {
+      console.log("Stack Overflow");
+      return false;
+    }
+
+    // this.top++;
+    this.list[++this.top] = value;
+    return true;
+  }
+
+  // Removes and returns the value at the end of the stack
   //   this.pop = function () {
   //     if (this.count === 0) {
   //       return undefined;
@@ -57,18 +75,51 @@ class Stack {
   //     delete this.storage[this.count];
   //     return result;
   //   };
-  //   // To know the stack size
+  pop() {
+    if (this.isEmpty()) {
+      console.log("Stack Underflow");
+      return false;
+    }
+
+    const result = this.list[this.top];
+    delete this.list[this.top];
+    this.top--;
+    return result;
+  }
+
+  // To know the stack size
   //   this.size = function () {
   //     return this.count;
   //   };
-  //   // To know the condition of this stack
+  size() {
+    if (this.isEmpty()) {
+      console.log("Stack Underflow");
+      return false;
+    }
+
+    return ++this.top;
+  }
+
+  // To know the condition of this stack
   //   this.isEmpty = function () {
   //     return this.count < 0;
   //   };
-  //   // Returns the value at the end of the stack
+  isEmpty() {
+    return this.top < 0;
+  }
+
+  // Returns the value at the end of the stack
   //   this.peek = function () {
   //     return this.storage[this.count - 1];
   //   };
+  peek() {
+    if (this.isEmpty()) {
+      console.log("Stack Underflow");
+      return false;
+    }
+
+    return this.list[this.top];
+  }
 }
 
 /**
@@ -76,16 +127,15 @@ class Stack {
  * Apply This Stack
  * **************************
  */
-// let myStack = new Stack();
-// console.log(myStack.isEmpty());
+let myStack = new Stack();
 
-// myStack.push(1); // count: 0
-// myStack.push(2); // count: 1
-// myStack.push("akash"); // count: 2
-// myStack.push(3); // count: 3
+myStack.push(1);
+myStack.push(2);
+myStack.push("akash");
+myStack.push(3);
 
-// console.log(myStack); // { '0': 1, '1': 2, '2': 'akash', '3': 3 } and //count: 4
-// console.log(myStack.size()); // 4
-// console.log(myStack.pop()); // 3
-// console.log(myStack.peek()); // akash
-// console.log(myStack.isEmpty());
+console.log(myStack);
+console.log(myStack.size());
+console.log(myStack.pop());
+console.log(myStack.peek());
+console.log(myStack.isEmpty());
