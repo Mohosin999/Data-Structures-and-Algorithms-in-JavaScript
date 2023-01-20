@@ -120,6 +120,10 @@ class Stack {
 
     return this.list[this.top];
   }
+
+  length() {
+    return this.top;
+  }
 }
 
 /**
@@ -134,10 +138,43 @@ myStack.push(2);
 myStack.push("akash");
 myStack.push(3);
 
-console.log(myStack);
-console.log(myStack.size());
-console.log(myStack.pop());
-console.log(myStack.peek());
-console.log(myStack.isEmpty());
+// console.log(myStack.length());
+// console.log(myStack);
+// console.log(myStack.size());
+// console.log(myStack.pop());
+// console.log(myStack.peek());
+// console.log(myStack.isEmpty());
 
 // Palindromes
+// Process - 01
+// const isPalindromes = (str) => {
+//   const reverseStr = str.split("").reverse().join("");
+//   if (str === reverseStr) {
+//     console.log("The word is a palindrome");
+//     return;
+//   } else {
+//     console.log("The word is not !");
+//   }
+// };
+
+// isPalindromes("faruk"); // ✅
+
+// Process - 02 - using Stack
+const isPalindromes = (word) => {
+  const stack = new Stack();
+  for (let i = 0; i < word.length; i++) {
+    stack.push(word[i]);
+  }
+  let reverseStack = "";
+  while (stack.length() > -1) reverseStack += stack.pop();
+
+  if (word === reverseStack) {
+    console.log(`${word} is a palindrome😋`);
+    return;
+  } else {
+    console.log(`${word} is not a palindrome😥😥`);
+    return false;
+  }
+};
+
+isPalindromes("racecar");
