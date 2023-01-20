@@ -85,5 +85,5 @@ myQueue.enqueue("b");
 myQueue.enqueue("c");
 
 myQueue.dequeue();
-
 console.log(myQueue.showQueue());
+console.log(myQueue.nextQueue());
