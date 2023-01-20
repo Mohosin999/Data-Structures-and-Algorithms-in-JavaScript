@@ -178,3 +178,15 @@ const isPalindromes = (word) => {
 };
 
 isPalindromes("racecar");
+
+// Simulating recursive processes using a stack
+const factorial = (num) => {
+  const numStack = new Stack();
+  while (num > 1) numStack.push(num--);
+
+  let product = 1;
+  while (numStack.length() > -1) product *= numStack.pop();
+  return product;
+};
+
+console.log(factorial(4));
